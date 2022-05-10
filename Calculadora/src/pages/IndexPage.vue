@@ -75,6 +75,9 @@ const Resultado = () => {
    resultado.value = primeironumero.value + segundonumero.value
     display.value = resultado.value
   console.log(resultado.value)
+     segundonumero.value = display.value
+   resultado.value = primeironumero.value - segundonumero.value
+    display.value = resultado.value
 }
 
 
