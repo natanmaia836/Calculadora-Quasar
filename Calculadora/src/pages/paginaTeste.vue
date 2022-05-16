@@ -8,10 +8,10 @@
         <q-btn @click="Limpar()" color="primary" label="C"></q-btn>
       </div>
        <div class="col q-ml-sm">
-        <q-btn color="primary" label="/"></q-btn>
+        <q-btn @click="Dividido()" color="primary" label="/"></q-btn>
       </div>
        <div class="col q-ml-sm">
-        <q-btn color="primary" label="%"></q-btn>
+        <q-btn  color="primary" label="%"></q-btn>
       </div>
        <div class="col q-ml-sm">
         <q-btn @click="Mais()" color="primary" label="+"></q-btn>
@@ -83,6 +83,11 @@ const Display = ref (0)
 const num1 = ref (0)
 const num2 = ref (0)
 const resultado = ref (0)
+const somar = ref (null)
+const subtrair = ref (null)
+const multiplicar = ref (null)
+const dividir = ref (null)
+//const porcentagem = ref (null)
 export default defineComponent({
 name: 'paginaTeste',
 setup () {
@@ -93,30 +98,79 @@ const Clique = (numero) => {
 
 const Limpar = () => {
   Display.value = ""
+  somar.value = null
+  subtrair.value = null
+  multiplicar.value = null
+  dividir.value = null
+  //porcentagem.value = null
 }
 
 const Mais = () => {
   num1.value = Display.value
   Display.value = num1.value + "+"
-  console.log(num1.value)
+  somar.value = "+"
+  console.log(somar.value)
 }
 
 const Menos = () => {
     num1.value = Display.value
   Display.value = num1.value + "-"
-  console.log(num1.value)
+  subtrair.value = "-"
+  console.log(subtrair.value)
 }
 
 const Vezes = () => {
     num1.value = Display.value
   Display.value = num1.value + "*"
-  console.log(num1.value)
+  multiplicar.value = "*"
+  console.log(multiplicar.value)
 }
 
+const Dividido = () => {
+    num1.value = Display.value
+  Display.value = num1.value + "/"
+  dividir.value = "/"
+  console.log(dividir.value)
+}
+
+// const Porcento = () => {
+//     num1.value = Display.value
+//   Display.value = num1.value + "%"
+//   porcentagem.value = "%"
+//   console.log(porcentagem.value)
+// }
+
 const Igual = () => {
+  //num2.value = Display.value
+  //resultado.value = num1.value + num2.value
+  //Display.value = resultado.value
+if (somar.value == "+") {
   num2.value = Display.value
   resultado.value = num1.value + num2.value
   Display.value = resultado.value
+}
+if (subtrair.value == "-") {
+  num2.value = Display.value
+  resultado.value = num2.value - num1.value
+  Display.value = resultado.value
+}
+if (multiplicar.value == "*") {
+  num2.value = Display.value
+  resultado.value = num1.value * num2.value
+  Display.value = resultado.value
+}
+if (dividir.value == "/") {
+  num2.value = Display.value
+  resultado.value = num1.value / num2.value
+  Display.value = resultado.value
+}
+// if (porcentagem.value == "%") {
+//   num2.value = Display.value
+//   resultado.value = (num2.value) / 100
+//   Display.value = resultado.value
+// }
+
+console.log (resultado.value)
 }
 
 return {
@@ -126,10 +180,17 @@ return {
   Mais,
   Limpar,
   Clique,
+  //Porcento,
+  Dividido,
   Display,
   num1,
   num2,
   resultado,
+  somar,
+  subtrair,
+  multiplicar,
+  dividir,
+  // porcentagem,
 }
 },
 });
