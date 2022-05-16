@@ -79,9 +79,9 @@
 <script>
 import { defineComponent } from "vue"
 import {ref} from 'vue'
-const Display = ref (0)
-const num1 = ref (0)
-const num2 = ref (0)
+const Display = ref ("")
+const num1 = ref ("")
+const num2 = ref ("")
 const resultado = ref (0)
 const somar = ref (null)
 const subtrair = ref (null)
@@ -93,7 +93,7 @@ name: 'paginaTeste',
 setup () {
 
 const Clique = (numero) => {
-  Display.value = numero
+  Display.value = Display.value + numero
 }
 
 const Limpar = () => {
@@ -107,7 +107,7 @@ const Limpar = () => {
 
 const Mais = () => {
   num1.value = Display.value
-  Display.value = num1.value + "+"
+  Display.value = ""
   somar.value = "+"
   console.log(somar.value)
 }
@@ -141,29 +141,32 @@ const Dividido = () => {
 // }
 
 const Igual = () => {
+  let v1 = parseInt(Display.value)
+  let v2 = parseInt(num1.value)
+  Display.value = v1 + v2
   //num2.value = Display.value
   //resultado.value = num1.value + num2.value
   //Display.value = resultado.value
-if (somar.value == "+") {
-  num2.value = Display.value
-  resultado.value = num1.value + num2.value
-  Display.value = resultado.value
-}
-if (subtrair.value == "-") {
-  num2.value = Display.value
-  resultado.value = num2.value - num1.value
-  Display.value = resultado.value
-}
-if (multiplicar.value == "*") {
-  num2.value = Display.value
-  resultado.value = num1.value * num2.value
-  Display.value = resultado.value
-}
-if (dividir.value == "/") {
-  num2.value = Display.value
-  resultado.value = num1.value / num2.value
-  Display.value = resultado.value
-}
+// if (somar.value == "+") {
+//   num2.value = Display.value
+//   resultado.value = num1.value + num2.value
+//   Display.value = resultado.value
+// }
+// if (subtrair.value == "-") {
+//   num2.value = Display.value
+//   resultado.value = num2.value - num1.value
+//   Display.value = resultado.value
+// }
+// if (multiplicar.value == "*") {
+//   num2.value = Display.value
+//   resultado.value = num1.value * num2.value
+//   Display.value = resultado.value
+// }
+// if (dividir.value == "/") {
+//   num2.value = Display.value
+//   resultado.value = num1.value / num2.value
+//   Display.value = resultado.value
+// }
 // if (porcentagem.value == "%") {
 //   num2.value = Display.value
 //   resultado.value = (num2.value) / 100
