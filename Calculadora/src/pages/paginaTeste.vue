@@ -3,15 +3,15 @@
     <div class="row">
       <q-input v-model="Display" outlined></q-input>
     </div>
-    <div class="row q-ml-sm">
+    <div class="row q-mt-sm q-ml-sm">
       <div class="col">
-        <q-btn @click="Limpar()" color="primary" label="C"></q-btn>
+        <q-btn @click="Limpar()" color="green" label="C"></q-btn>
       </div>
        <div class="col q-ml-sm">
         <q-btn @click="Dividido()" color="primary" label="/"></q-btn>
       </div>
-       <div class="col q-ml-sm">
-        <q-btn  color="primary" label="%"></q-btn>
+       <div class="col q-ml-xs">
+        <q-btn @click="Porcento()" color="primary" label="%"></q-btn>
       </div>
        <div class="col q-ml-sm">
         <q-btn @click="Mais()" color="primary" label="+"></q-btn>
@@ -27,7 +27,7 @@
        <div class="col q-ml-sm">
         <q-btn @click="Clique(9)" label="9"></q-btn>
       </div>
-       <div class="col q-ml-sm">
+       <div class="col q-ml-sm q-mt-sm">
         <q-btn @click="Vezes()" color="primary" label="*"></q-btn>
       </div>
     </div>
@@ -41,8 +41,8 @@
        <div class="col q-ml-sm">
         <q-btn @click="Clique(6)" label="6"></q-btn>
       </div>
-       <div class="col q-ml-sm">
-        <q-btn @click="Menos()" color="primary" label="-"></q-btn>
+       <div class="col q-ml-sm q-mt-sm">
+        <q-btn @click="Menos()" color="primary" label="_"></q-btn>
       </div>
     </div>
         <div class="row q-ml-sm">
@@ -55,22 +55,16 @@
        <div class="col q-ml-sm">
         <q-btn @click="Clique(3)" label="3"></q-btn>
       </div>
-       <div class="col q-ml-sm">
-        <q-btn color="primary" @click="Mais()" label="+"></q-btn>
+       <div class="col q-ml-sm q-mt-sm">
+        <q-btn color="primary" @click="Virgula()" label="."></q-btn>
       </div>
     </div>
         <div class="row q-ml-sm">
-      <div class="col">
-        <q-btn label="()"></q-btn>
-      </div>
        <div class="col q-ml-sm">
         <q-btn @click="Clique(0)" label="0"></q-btn>
       </div>
-       <div class="col q-ml-sm">
-        <q-btn label="."></q-btn>
-      </div>
-       <div class="col q-ml-sm">
-        <q-btn @click="Igual()" color="primary" label="="></q-btn>
+       <div class="col q-ml-md">
+        <q-btn size="md" @click="Igual()" color="pink" label="="></q-btn>
       </div>
     </div>
   </q-page>
@@ -83,11 +77,13 @@ const Display = ref ("")
 const num1 = ref ("")
 const num2 = ref ("")
 const resultado = ref (0)
+const teste = ref (0)
 const somar = ref (null)
 const subtrair = ref (null)
 const multiplicar = ref (null)
 const dividir = ref (null)
-//const porcentagem = ref (null)
+const porcentagem = ref (null)
+const fracionado = ref (null)
 export default defineComponent({
 name: 'paginaTeste',
 setup () {
@@ -102,79 +98,75 @@ const Limpar = () => {
   subtrair.value = null
   multiplicar.value = null
   dividir.value = null
-  //porcentagem.value = null
+  porcentagem.value = null
+  fracionado.value = null
 }
 
 const Mais = () => {
   num1.value = Display.value
+  console.log(num1.value)
   Display.value = ""
   somar.value = "+"
-  console.log(somar.value)
 }
 
 const Menos = () => {
     num1.value = Display.value
-  Display.value = num1.value + "-"
+  Display.value = ""
   subtrair.value = "-"
   console.log(subtrair.value)
 }
 
 const Vezes = () => {
     num1.value = Display.value
-  Display.value = num1.value + "*"
+  Display.value =""
   multiplicar.value = "*"
   console.log(multiplicar.value)
 }
 
 const Dividido = () => {
     num1.value = Display.value
-  Display.value = num1.value + "/"
+  Display.value = ""
   dividir.value = "/"
   console.log(dividir.value)
 }
 
-// const Porcento = () => {
-//     num1.value = Display.value
-//   Display.value = num1.value + "%"
-//   porcentagem.value = "%"
-//   console.log(porcentagem.value)
-// }
+ const Porcento = () => {
+     num1.value = Display.value
+   Display.value = ""
+   porcentagem.value = "%"
+   console.log(porcentagem.value)
+ }
+
+ const Virgula = () => {
+   Display.value = Display.value + "."
+  //  num1.value = Display.value
+  //  fracionado.value = "."
+  //   console.log(num1.value)
+ }
 
 const Igual = () => {
-  let v1 = parseInt(Display.value)
-  let v2 = parseInt(num1.value)
-  Display.value = v1 + v2
-  //num2.value = Display.value
-  //resultado.value = num1.value + num2.value
-  //Display.value = resultado.value
-// if (somar.value == "+") {
-//   num2.value = Display.value
-//   resultado.value = num1.value + num2.value
-//   Display.value = resultado.value
-// }
-// if (subtrair.value == "-") {
-//   num2.value = Display.value
-//   resultado.value = num2.value - num1.value
-//   Display.value = resultado.value
-// }
-// if (multiplicar.value == "*") {
-//   num2.value = Display.value
-//   resultado.value = num1.value * num2.value
-//   Display.value = resultado.value
-// }
-// if (dividir.value == "/") {
-//   num2.value = Display.value
-//   resultado.value = num1.value / num2.value
-//   Display.value = resultado.value
-// }
-// if (porcentagem.value == "%") {
-//   num2.value = Display.value
-//   resultado.value = (num2.value) / 100
-//   Display.value = resultado.value
-// }
 
-console.log (resultado.value)
+  let v1 = parseFloat(num1.value)
+  let v2 = parseFloat(Display.value)
+
+  if (somar.value == "+") {
+  Display.value = v1 + v2}
+
+  if (subtrair.value == "-") {
+  Display.value = v1 - v2}
+
+    if (multiplicar.value == "*") {
+  Display.value = v1 * v2}
+
+    if (dividir.value == "/") {
+  Display.value =  v1 / v2}
+
+     if (porcentagem.value == "%") {
+  teste.value = v2 / 100
+  Display.value = v1 * teste.value}
 }
+
+
 
 return {
   Igual,
@@ -183,8 +175,9 @@ return {
   Mais,
   Limpar,
   Clique,
-  //Porcento,
+  Porcento,
   Dividido,
+  Virgula,
   Display,
   num1,
   num2,
@@ -193,7 +186,9 @@ return {
   subtrair,
   multiplicar,
   dividir,
-  // porcentagem,
+  porcentagem,
+  teste,
+  fracionado,
 }
 },
 });
